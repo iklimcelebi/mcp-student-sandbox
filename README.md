@@ -1,37 +1,37 @@
-# MCP Student Sandbox
+# MCP Öğrenci Sandbox'ı
 
-A Python learning project with 4 challenging code files designed to teach clean code, debugging, and security best practices.
+Python öğrenmek için hazırlanmış 4 zorlu kod dosyası içeren bir proje. Temiz kod yazma, hata ayıklama ve güvenlik konularında beceri geliştirmeye odaklanır.
 
-## 📚 Project Overview
+## 📚 Proje Hakkında
 
-This sandbox contains four Python files, each demonstrating different programming challenges:
+Bu sandbox (oyun alanı), her biri farklı programlama zorluklarını gösteren 4 Python dosyasından oluşur:
 
-1. **spaghetti_logic.py** - Code quality & modularity
-2. **failing_calculator.py** - Error handling & debugging
-3. **secret_leak.py** - Security & credential management
-4. **mystery_module.py** - Code analysis & documentation
+1. **spaghetti_logic.py** - Kod kalitesi ve modülerlik
+2. **failing_calculator.py** - Hata yönetimi ve hata ayıklama
+3. **secret_leak.py** - Güvenlik ve şifre yönetimi
+4. **mystery_module.py** - Kod analizi ve dokümantasyon
 
 ---
 
-## 🎯 Files & Challenges
+## 🎯 Dosyalar ve Zorluklar
 
 ### 1. spaghetti_logic.py
-**Challenge**: Refactor messy, monolithic code into modular, maintainable functions.
+**Zorluk**: Karışık, tek parça kodu modüler ve bakımı kolay fonksiyonlara dönüştürmek.
 
-**Original Issues**:
-- Poor variable naming (res, d, val, s)
-- Mixed concerns (calculation, formatting, logging)
-- No documentation
-- Hard to test individual parts
+**Orijinal Problemler**:
+- Kötü değişken isimleri (res, d, val, s)
+- Karışık sorumluluklar (hesaplama, formatlama, loglama)
+- Dokümantasyon yok
+- Tek tek parçaları test etmek zor
 
-**Refactored Solution**:
-- Separated into single-responsibility functions
-- `calculate_total()` - handles multiplication
-- `format_total()` - formats output strings
-- `log_results()` - manages file I/O
-- Added comprehensive docstrings
+**Uygulanan Çözüm**:
+- Tek sorumluluklı fonksiyonlara ayrıldı
+- `calculate_total()` - çarpma işlemini yapar
+- `format_total()` - çıktı metinlerini formatlar
+- `log_results()` - dosya yazma işlemini yönetir
+- Kapsamlı açıklama metinleri eklendi
 
-**Run**:
+**Çalıştırma**:
 ```bash
 python -c "from spaghetti_logic import process_data; print(process_data([10, 20, 30]))"
 ```
@@ -39,126 +39,126 @@ python -c "from spaghetti_logic import process_data; print(process_data([10, 20,
 ---
 
 ### 2. failing_calculator.py
-**Challenge**: Debug and fix a runtime error that crashes on specific inputs.
+**Zorluk**: Belirli girdilerde çöken çalışma zamanı hatasını bulup düzeltmek.
 
-**Original Problem**:
+**Orijinal Problem**:
 ```
 ZeroDivisionError: division by zero
-print(average_ratios([10, 5, 0]))  # Crashes when 0 is in the list
+print(average_ratios([10, 5, 0]))  # Liste içinde 0 olduğunda çöker
 ```
 
-**Root Cause**:
-- Function attempts `100 / numbers[i]` without checking for zero values
+**Kök Neden**:
+- Fonksiyon `100 / numbers[i]` işlemini sıfır kontrolü yapmadan yapıyor
 
-**Fix Applied**:
-- Filter out zero values: `valid_numbers = [num for num in numbers if num != 0]`
-- Add error handling and validation
-- Return sensible default if all numbers are zero
-- Added unit test support with docstring
+**Uygulanan Düzeltme**:
+- Sıfır değerleri filtrele: `valid_numbers = [num for num in numbers if num != 0]`
+- Hata yönetimi ve doğrulama ekle
+- Tüm sayılar sıfır olursa mantıklı varsayılan değer döndür
+- Dokümantasyon ile birim test desteği eklendi
 
-**Run**:
+**Çalıştırma**:
 ```bash
 export AWS_SECRET_KEY=test_key
 python failing_calculator.py
-# Output: Result: 15.0, Success! No division by zero error.
+# Çıktı: Result: 15.0, Success! No division by zero error.
 ```
 
-**Test Cases**:
+**Test Örnekleri**:
 ```bash
-# Normal case
+# Normal durum
 python -c "from failing_calculator import average_ratios; print(average_ratios([10, 5]))"
 
-# With zero (now safe)
+# Sıfır ile (şimdi güvenli)
 python -c "from failing_calculator import average_ratios; print(average_ratios([10, 5, 0]))"
 
-# Edge case: all zeros
+# Özel durum: tüm sıfırlar
 python -c "from failing_calculator import average_ratios; print(average_ratios([0, 0, 0]))"
 ```
 
 ---
 
 ### 3. secret_leak.py
-**Challenge**: Implement secure credential management and prevent secret leaks.
+**Zorluk**: Güvenli şifre yönetimi uygulamak ve gizli bilgi sızıntılarını önlemek.
 
-**Original Security Issues** ❌:
-- Hardcoded AWS secret key in source code
-- Secrets visible in version control (GitHub)
-- Full credentials printed in logs
-- Anyone with repo access could steal keys
+**Orijinal Güvenlik Problemleri** ❌:
+- AWS gizli anahtarı kaynak kodunda sabit yazılı
+- Sırlar sürüm kontrolünde (GitHub) görünür
+- Tam şifreler log'larda yazdırılır
+- Repo erişimi olan herkes şifreleri çalabilir
 
-**Security Fixes Applied** ✅:
-- Load credentials from environment variables
-- Safe logging (preview only first 8 characters)
-- Proper error handling for missing secrets
-- `.gitignore` prevents `.env` file commits
-- `.env.example` template for developers
+**Uygulanan Güvenlik Düzeltmeleri** ✅:
+- Şifreleri ortam değişkenlerinden yükle
+- Güvenli loglama (sadece ilk 8 karakteri göster)
+- Eksik şifreler için uygun hata yönetimi
+- `.gitignore` `.env` dosya commit'lerini engeller
+- Geliştiriciler için `.env.example` şablonu
 
-**Usage**:
+**Kullanım**:
 
-1. Setup:
+1. Kurulum:
 ```bash
 cp .env.example .env
-# Edit .env and add your real AWS credentials
-# AWS_SECRET_KEY=your_actual_key_here
+# .env dosyasını düzenleyip gerçek AWS şifrelerinizi ekleyin
+# AWS_SECRET_KEY=gercek_anahtariniz_buraya
 ```
 
-2. Run with environment variable:
+2. Ortam değişkeni ile çalıştırma:
 ```bash
-export AWS_SECRET_KEY=AKIA_YOUR_KEY_HERE
+export AWS_SECRET_KEY=AKIA_GERCEK_ANAHTARINIZ_BURAYA
 python secret_leak.py
-# Output: INFO:__main__:Connecting to AWS (key starts with: AKIA_YOU...)
+# Çıktı: INFO:__main__:Connecting to AWS (key starts with: AKIA_GER...)
 ```
 
-**Security Best Practices**:
-- Never commit `.env` to git (protected by `.gitignore`)
-- Use environment variables for local development
-- Use secret managers (AWS Secrets Manager, HashiCorp Vault) in production
-- Log only non-sensitive key previews
-- Validate that secrets are provided before using them
+**Güvenlik En İyi Uygulamaları**:
+- `.env` dosyasını asla git'e göndermeyin (`.gitignore` ile korunur)
+- Yerel geliştirme için ortam değişkenlerini kullanın
+- Üretimde gizli bilgi yöneticileri kullanın (AWS Secrets Manager, HashiCorp Vault)
+- Sadece hassas olmayan anahtar önizlemelerini log'layın
+- Şifrelerin sağlandığını kullanmadan önce doğrulayın
 
-See `SECURITY_FIXES.md` for detailed security analysis.
+Detaylı güvenlik analizi için `SECURITY_FIXES.md` dosyasına bakın.
 
 ---
 
 ### 4. mystery_module.py
-**Challenge**: Understand and document a function that's hard to read.
+**Zorluk**: Okunması zor bir fonksiyonu anlamak ve dokümante etmek.
 
-**What It Does**:
-The function `fn_x(a, b, c)` solves **quadratic equations** using the quadratic formula.
+**Ne Yapar**:
+`fn_x(a, b, c)` fonksiyonu **ikinci derece denklemleri** ikinci derece denklem formülü kullanarak çözer.
 
-**Decoded Formula**:
+**Çözülen Formül**:
 ```
-Equation: ax² + bx + c = 0
-Discriminant: d = b² - 4ac
-Solutions (roots): x = (-b ± √d) / 2a
+Denklem: ax² + bx + c = 0
+Diskriminant: d = b² - 4ac
+Çözümler (kökler): x = (-b ± √d) / 2a
 ```
 
-**Examples**:
+**Örnekler**:
 ```python
-# x² - 5x + 6 = 0  →  (x-2)(x-3)=0  →  roots: (3, 2)
-fn_x(1, -5, 6)  # Returns (3.0, 2.0)
+# x² - 5x + 6 = 0  →  (x-2)(x-3)=0  →  kökler: (3, 2)
+fn_x(1, -5, 6)  # Döner: (3.0, 2.0)
 
-# x² + 1 = 0  →  no real solutions
-fn_x(1, 0, 1)   # Returns None (discriminant < 0)
+# x² + 1 = 0  →  gerçek çözüm yok
+fn_x(1, 0, 1)   # Döner: None (diskriminant < 0)
 ```
 
-**Key Insight**: Understanding mathematical context makes mysterious code clear!
+**Önemli İçgörü**: Matematiksel bağlamı anlamak gizemli kodu açık hale getirir!
 
 ---
 
-## 📋 Setup & Installation
+## 📋 Kurulum ve Çalıştırma
 
-### Requirements
+### Gereksinimler
 - Python 3.7+
 - Git
-- GitHub CLI (optional, for repo management)
+- GitHub CLI (isteğe bağlı, repo yönetimi için)
 
-### Clone & Run
+### İndirme ve Çalıştırma
 ```bash
 git clone https://github.com/iklimcelebi/mcp-student-sandbox.git
 cd mcp-student-sandbox
 
-# Test all files
+# Tüm dosyaları test et
 python spaghetti_logic.py
 python failing_calculator.py
 python secret_leak.py
@@ -166,68 +166,68 @@ python secret_leak.py
 
 ---
 
-## 🔐 Security Configuration
+## 🔐 Güvenlik Yapılandırması
 
-### Environment Variables
-Create a `.env` file (not committed to git):
+### Ortam Değişkenleri
+Git'e gönderilmeyen bir `.env` dosyası oluşturun:
 ```bash
 cp .env.example .env
-# Edit with your actual credentials
-AWS_SECRET_KEY=AKIA_YOUR_REAL_KEY_HERE
-AWS_ACCESS_KEY=ASIA_YOUR_REAL_KEY_HERE
+# Gerçek şifrelerinizle düzenleyin
+AWS_SECRET_KEY=AKIA_GERCEK_ANAHTARINIZ_BURAYA
+AWS_ACCESS_KEY=ASIA_GERCEK_ANAHTARINIZ_BURAYA
 ```
 
 ### .gitignore
-Protected files (automatically ignored):
-- `.env` - Local secrets
-- `__pycache__/` - Python compiled files
-- `*.log` - Log files
-- `.vscode/`, `.idea/` - IDE folders
+Otomatik olarak göz ardı edilen korumalı dosyalar:
+- `.env` - Yerel gizli bilgiler
+- `__pycache__/` - Python derlenmiş dosyalar
+- `*.log` - Log dosyaları
+- `.vscode/`, `.idea/` - IDE klasörleri
 
 ---
 
-## 📚 Learning Outcomes
+## 📚 Öğrenilecek Beceriler
 
-After completing this sandbox, you'll understand:
+Bu sandbox'ı tamamladıktan sonra şunları anlayacaksınız:
 
-✅ **Clean Code**: Modularity, single responsibility, naming conventions  
-✅ **Debugging**: Identifying root causes, error handling, testing  
-✅ **Security**: Credential management, secret protection, best practices  
-✅ **Code Analysis**: Understanding complex functions, mathematical concepts
-
----
-
-## 📖 Documentation
-
-- `SECURITY_FIXES.md` - Detailed security analysis and solutions
-- `.env.example` - Environment variable template
-- `.gitignore` - Git exclusion rules
+✅ **Temiz Kod**: Modülerlik, tek sorumluluk, isimlendirme kuralları
+✅ **Hata Ayıklama**: Kök nedenleri bulma, hata yönetimi, test etme
+✅ **Güvenlik**: Şifre yönetimi, gizli bilgi koruması, en iyi uygulamalar
+✅ **Kod Analizi**: Karmaşık fonksiyonları anlama, matematiksel kavramlar
 
 ---
 
-## 🤝 Contributing
+## 📖 Dokümantasyon
 
-This is a learning sandbox. Feel free to:
-- Refactor further
-- Add test cases
-- Improve documentation
-- Try different approaches
+- `SECURITY_FIXES.md` - Detaylı güvenlik analizi ve çözümler
+- `.env.example` - Ortam değişkeni şablonu
+- `.gitignore` - Git hariç tutma kuralları
 
 ---
 
-## 📝 License
+## 🤝 Katkıda Bulunma
 
-Educational project - use freely for learning purposes.
-
----
-
-## 🔗 Resources
-
-- [PEP 8 - Python Style Guide](https://www.python.org/dev/peps/pep-0008/)
-- [OWASP - Credential Management](https://owasp.org/)
-- [Python Logging Best Practices](https://docs.python.org/3/howto/logging.html)
-- [Quadratic Formula](https://en.wikipedia.org/wiki/Quadratic_formula)
+Bu bir öğrenme sandbox'ı. Serbestçe:
+- Daha fazla refactor yapın
+- Test örnekleri ekleyin
+- Dokümantasyonu iyileştirin
+- Farklı yaklaşımlar deneyin
 
 ---
 
-**Happy Learning!** 🚀
+## 📝 Lisans
+
+Eğitim projesi - öğrenme amaçlı serbestçe kullanın.
+
+---
+
+## 🔗 Kaynaklar
+
+- [PEP 8 - Python Stil Rehberi](https://www.python.org/dev/peps/pep-0008/)
+- [OWASP - Şifre Yönetimi](https://owasp.org/)
+- [Python Loglama En İyi Uygulamaları](https://docs.python.org/3/howto/logging.html)
+- [İkinci Derece Denklem Formülü](https://en.wikipedia.org/wiki/Quadratic_formula)
+
+---
+
+**Mutlu Öğrenmeler!** 🚀
